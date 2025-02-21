@@ -1,3 +1,11 @@
+/**
+ * mockBifbofNext.ts
+ * We use it to mock how real bifbof would add the commit
+ * This is a mock and more careful impementaiton would be needed
+ * to handle the task queue
+ */
+
+
 import { execSync } from "child_process";
 
 const taskTitle = process.argv[2] || "mockBifbofNext";

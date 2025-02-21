@@ -1,5 +1,6 @@
 import chokidar from "chokidar";
 import { getCurrentBranchPath, getHeadCommitHash } from "../utils/git";
+import { ValidationError } from "../utils/errors";
 
 interface WatchTask {
   name: string;
@@ -9,13 +10,11 @@ interface WatchTask {
   simulateValidationError: boolean;
 }
 
-export class ValidationError extends Error {
-  constructor(message: string) {
-    super(message);
-    this.name = "ValidationError";
-  }
-}
-
+/**
+ * GitWatch is responsible for watching the Git repository for changes and managing tasks related to these changes.
+ * It utilizes the chokidar library for file system watching and provides methods for initializing the watcher,
+ * adding tasks to be executed upon changes, and handling errors that might occur during the watching process.
+ */
 export class GitWatch {
   private static instance: GitWatch;
   private watcher: chokidar.FSWatcher | null = null;
@@ -75,10 +74,10 @@ export class GitWatch {
   }
 
   /**
-   * Add a new task. If `validate` is not provided, defaults to `true`.
+   * Add a new task. If `simulateValidationError` is not provided, defaults to `false`.
    *
    * @param name A descriptive name for the task
-   * @param validate Whether to invoke the random validation check (50% chance of failure)
+   * @param simulateValidationError Whether to simulate validation failure
    */
   addTask(name: string, simulateValidationError = false): Promise<void> {
     const oldHead = getHeadCommitHash();

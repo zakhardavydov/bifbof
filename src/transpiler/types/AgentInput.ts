@@ -2,6 +2,9 @@ import { AbstractInput } from "./AbstractInput";
 import type { ValidationResult } from "./AbstractInput";
 import { z } from "zod";
 
+/**
+ * AgentInput has prompt, optional file to operate on, additional options and errors we would like agent to fic
+ */
 export class AgentInput extends AbstractInput {
   readonly type = "agent";
 

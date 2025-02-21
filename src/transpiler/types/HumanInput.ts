@@ -2,6 +2,9 @@ import { AbstractInput } from "./AbstractInput";
 import type { ValidationResult } from "./AbstractInput";
 import { z } from "zod";
 
+/**
+ * HumanInput only contains a prompt which we want to pass to human as an instruction
+ */
 export class HumanInput extends AbstractInput {
   readonly type = "human";
 

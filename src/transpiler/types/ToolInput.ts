@@ -2,6 +2,14 @@ import { AbstractInput } from "./AbstractInput";
 import type { ValidationResult } from "./AbstractInput";
 import { z } from "zod";
 
+/**
+ * ToolInput closely resembles tool from original design doc
+ * name is the name of the tool that gets passed to bifbof next
+ * input is an arbitary container for tool inputs
+ * modifiesRepo allows us to declare whether the tool is expected to commit to repo, if it is expected, we will queue GitWatch task for it
+ * simulateShellError simulates failure of bifbof CLI
+ * simulateValidationError simulates failure in validation of the tool outputs after commit has been found
+ */
 export class ToolInput extends AbstractInput {
   readonly type = "tool";
 
