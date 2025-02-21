@@ -10,23 +10,23 @@ import { execSync } from "child_process";
  * @returns The path to the temporary Git repo.
  */
 export function createTempGitRepo(): string {
-	const tempDir = mkdtempSync(join(tmpdir(), "test-repo-"));
+  const tempDir = mkdtempSync(join(tmpdir(), "test-repo-"));
 
-	const currentDir = process.cwd();
+  const currentDir = process.cwd();
 
-	cpSync(currentDir, tempDir, { recursive: true, force: true });
+  cpSync(currentDir, tempDir, { recursive: true, force: true });
 
-	// Initialize an empty Git repository
-	execSync("git init", { cwd: tempDir });
+  // Initialize an empty Git repository
+  execSync("git init", { cwd: tempDir });
 
-	return tempDir;
+  return tempDir;
 }
 
 /**
  * Removes the specified directory recursively. Useful for cleaning up after tests.
  */
 export function removeTempGitRepo(dirPath: string): void {
-	rmSync(dirPath, { recursive: true, force: true });
+  rmSync(dirPath, { recursive: true, force: true });
 }
 
 /**
@@ -40,16 +40,16 @@ export function removeTempGitRepo(dirPath: string): void {
  *   const { repoPath } = useTempGitRepo();
  */
 export function useTempGitRepo() {
-	let repoPath: string;
+  let repoPath: string;
 
-	beforeAll(() => {
-		repoPath = createTempGitRepo();
-		process.chdir(repoPath);
-	});
+  beforeAll(() => {
+    repoPath = createTempGitRepo();
+    process.chdir(repoPath);
+  });
 
-	return {
-		get repoPath() {
-			return repoPath;
-		},
-	};
+  return {
+    get repoPath() {
+      return repoPath;
+    },
+  };
 }
