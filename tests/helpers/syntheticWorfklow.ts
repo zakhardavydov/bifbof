@@ -1,7 +1,5 @@
 import { randomInt } from "crypto";
 
-// Adjust as needed
-
 interface CodeSnippet {
   code: string;
   length: number;

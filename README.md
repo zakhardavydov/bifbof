@@ -35,6 +35,31 @@ In detail, here is the same workflow:
 
 Agent is specifc case of the tool as per original programming model.
 
+## Run this
+
+Before anything, install the dependencies:
+```ts
+bun install
+```
+
+To run sample worfklows:
+```ts
+bun main.ts
+```
+
+Last workflow requires human input, so you would need to commit something for it to terminate.
+
+To run an example of synthetic workflow generated for evaluation:
+
+```ts
+bun sample_synthetic_workflow.ts
+```
+
+To run tests, including end-to-end test using synthetic workflow:
+```ts
+bun test
+```
+
 ## Evaluation
 
 Tests run in temporary git repos. For now, these repos are not removed for debugging purposes. There is code to generate synthetic workflows with desired features and of desired length. Current end-to-end test generates 10 workflows with all features - in the future this will get refactored into separate tests (not as flaky) for separate features.
