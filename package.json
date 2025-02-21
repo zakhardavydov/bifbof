@@ -1,0 +1,17 @@
+{
+	"name": "bifbof",
+	"module": "main.ts",
+	"type": "module",
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"@types/bun": "latest"
+	},
+	"peerDependencies": {
+		"typescript": "^5.0.0"
+	},
+	"dependencies": {
+		"biome": "^0.3.3",
+		"chokidar": "^4.0.3",
+		"zod": "^3.24.2"
+	}
+}
