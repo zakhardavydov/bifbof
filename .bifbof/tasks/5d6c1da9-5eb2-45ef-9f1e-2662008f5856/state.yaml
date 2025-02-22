@@ -1,0 +1,17 @@
+toolInvocations:
+  - type: invocation
+    toolId: c4f1c376-436c-40a3-b4c2-60357431bf6e
+    toolName: next
+    toolInput:
+      prompt: Write code
+    startedAt: '2025-02-22T13:32:15.400Z'
+    endedAt: '2025-02-22T13:32:15.400Z'
+  - type: invocation
+    toolId: 3e4c25e9-0c9b-4361-82a3-65cd6eed5a89
+    toolName: next
+    toolInput:
+      prompt: Write more code
+    startedAt: '2025-02-22T13:32:15.476Z'
+    endedAt: '2025-02-22T13:32:15.476Z'
+    startCommit: 4631c53131e401f6433b372d2b6befe766200d97
+    endCommit: ad230b108c8f288e3a895061004e20c04819e7da

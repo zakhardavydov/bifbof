@@ -1,17 +1,18 @@
-import { agent, human, tool, ToolInput, GitWatch, ShellError } from "./src/transpiler";
+import { agent, agentWithGit, human, tool, ToolInput, GitWatch, TaskWatch, ShellError, task } from "./src/transpiler";
 
 /**
  * Simple case where we only call the agent
  */
-async function runTask() {
-  await agent("Write code");
+async function simpleTask() {
+  await agent("Write code", false);
+  await agentWithGit("Write more code", false);
 }
 
 /**
  * Common case where we call the agent,
  * call the validator tool which fails and we ask agent to fix it
  */
-async function runTryTask() {
+async function tryTask() {
   await agent("Write code");
   try {
     await tool(
@@ -27,7 +28,7 @@ async function runTryTask() {
  * call the validator tool and keep calling the agent until the validator passes,
  * or we excceed max retry number
  */
-async function runForTask() {
+async function forTask() {
   await agent("Write code");
   for (let i = 0; i < 5; i++) {
     try {
@@ -45,7 +46,7 @@ async function runForTask() {
  * Case where bifbof failed,
  * So we handle it andtry the same tool again with different param
  */
-async function runShellError() {
+async function shellErrorTask() {
   await agent("Write code");
   try {
     await tool(
@@ -64,22 +65,26 @@ async function runShellError() {
 /**
  * Case where we call agent and then call human
  */
-async function runHuman() {
+async function humanTask() {
   await agent("Write code");
   await human("Please check");
 }
 
+/**
+ * Nested task
+ */
+async function nestedTask() {
+  await agent("Write a readme with the plan to write code");
+  await simpleTask();
+}
+
 async function main() {
   try {
-    // Initialize the watcher on startup
+    // Initialize the watchers on startup
     await GitWatch.getInstance().init();
+    await TaskWatch.getInstance().init();
 
-    await runTask();
-    await runTryTask();
-    await runForTask();
-    await runShellError();
-    
-    await runHuman();
+    await task(nestedTask);
     
     console.log("All tasks done. Exiting...");
   } catch (error) {

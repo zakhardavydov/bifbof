@@ -12,7 +12,7 @@ This is a simple tool to write agentic workflows for code assitants.
 ## Why this transplier is a bit better
 
 Workflow is defined with typescript and is "transpiled" into to a series of calls to bifbof.
-Since bifbof modifes the state of the repo and every bifbof execution is terminated with a git commit, the tool monitors new commits to pass the control back to our program.
+Since bifbof modifes the state of the repo and every bifbof execution is terminated with state update (optionally git update), the tool monitors state updates to pass the control back to our program.
 
 > [chokidar](https://github.com/paulmillr/chokidar) library is used to watch over git files 
 
@@ -25,10 +25,10 @@ async function sampleWorkflow() {
 }
 ```
 
-At a high-level, this workflow calls the agent via bifbof, waits until a new commit is added and then resolves the promise. Then, we call human developer and wait for external commit and once it is resolved, terminate the program.
+At a high-level, this workflow calls the agent via bifbof, waits until a new state update is caught and then resolves the promise. Then, we call human developer and wait for external commit and once it is resolved, terminate the program.
 
 In detail, here is the same workflow:
-![Sample workflow](images/sample_workflow.png)
+![Sample workflow](images/sample_workflow_v2.png)
 
 
 ## Agents vs tools

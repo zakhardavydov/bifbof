@@ -12,6 +12,7 @@
 	"dependencies": {
 		"biome": "^0.3.3",
 		"chokidar": "^4.0.3",
+		"js-yaml": "^4.1.0",
 		"zod": "^3.24.2"
 	}
 }

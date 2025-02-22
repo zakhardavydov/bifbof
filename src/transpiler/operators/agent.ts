@@ -7,7 +7,7 @@ import { ToolInput } from "../types/ToolInput";
  * It is specific case of generic tool operator
  */
 export async function agent(
-  input: string | Partial<AgentInput>,
+  input: string | Partial<AgentInput>, modifiesRepo = false
 ): Promise<void> {
   const agentInput = AgentInput.create(input);
 
@@ -18,10 +18,16 @@ export async function agent(
       file: agentInput.file,
       errors: agentInput.errors,
     },
-    true, // Modifes the repo
+    modifiesRepo, // Modifes the repo
     false,  // We don't introduce shell errors
     false, // Or validation errors because in this programming model we prefer validation to be run separately from agent
   );
 
   return tool(toolInput);
+}
+
+export async function agentWithGit(
+  input: string | Partial<AgentInput>, modifiesRepo = true
+): Promise<void> {
+  return agent(input, true);
 }
