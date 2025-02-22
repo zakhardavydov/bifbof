@@ -30,20 +30,18 @@ export function generateSyntheticWorkflow(
  * Generated with selected features: ${features.join(", ")}
  */
 
-import { agent } from "./src/transpiler/operators/agent";
-import { human } from "./src/transpiler/operators/human";
-import { tool } from "./src/transpiler/operators/tool";
-import { ToolInput } from "./src/transpiler/types/ToolInput";
-import { GitWatch, ValidationError } from "./src/transpiler";
+import { agent, agentWithGit, human, tool, ToolInput, GitWatch, ValidationError, TaskWatch, ShellError, task } from "./src/transpiler";
 
-async function runTask() {
+async function testTask() {
 ${body}
   console.log("=== Synthetic workflow complete! ===");
 }
 
 await GitWatch.getInstance().init();
+await TaskWatch.getInstance().init();
+
 try {
-  await runTask();
+  await task(testTask);
 } catch (error) {
   if (error instanceof ValidationError) {
     console.error("Caught ValidationError, not crucial");
