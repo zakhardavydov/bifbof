@@ -3,13 +3,10 @@
  * Generated with selected features: if, try, for, agent, tool
  */
 
-import { agent } from "./src/transpiler/operators/agent";
-import { human } from "./src/transpiler/operators/human";
-import { tool } from "./src/transpiler/operators/tool";
-import { ToolInput } from "./src/transpiler/types/ToolInput";
-import { GitWatch, ValidationError } from "./src/transpiler";
+import { agent, tool, ToolInput, GitWatch, ValidationError, TaskWatch, task } from "./src/transpiler";
 
-async function runTask() {
+
+async function testTask() {
   await tool(
     ToolInput.create("validator", { param: "d" }, false, false, false),
   );
@@ -39,8 +36,10 @@ async function runTask() {
 }
 
 await GitWatch.getInstance().init();
+await TaskWatch.getInstance().init();
+
 try {
-  await runTask();
+  await task(testTask);
 } catch (error) {
   if (error instanceof ValidationError) {
     console.error("Caught ValidationError, not crucial");

@@ -1,0 +1,24 @@
+toolInvocations:
+  - type: invocation
+    toolId: df840193-6136-415d-951a-b5fbaae63e9f
+    toolName: next
+    toolInput:
+      prompt: Write a readme with the plan to write code
+    startedAt: '2025-02-22T13:35:22.391Z'
+    endedAt: '2025-02-22T13:35:22.391Z'
+  - type: invocation
+    toolId: a5459879-3c33-4625-8e6a-08793b2f7493
+    toolName: next
+    toolInput:
+      prompt: Write code
+    startedAt: '2025-02-22T13:35:22.468Z'
+    endedAt: '2025-02-22T13:35:22.468Z'
+  - type: invocation
+    toolId: a722e2de-f85b-47ab-9c16-f57c037d8742
+    toolName: next
+    toolInput:
+      prompt: Write more code
+    startedAt: '2025-02-22T13:35:22.544Z'
+    endedAt: '2025-02-22T13:35:22.544Z'
+    startCommit: 36937c279901e8d6eb79f003c90a4bf6e55d3d6b
+    endCommit: a9a90d0a43a411a90649516e03f90e7d3e7ca1e1
